@@ -1,0 +1,25 @@
+name: test
+
+on: [push]
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+
+    name: Hardhat Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Environment
+        uses: actions/setup-node@v3
+      - name: Test
+        uses: ambersun1234/hardhat-test-action@v1
+        with:
+          network: hardhat
+
