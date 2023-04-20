@@ -60,6 +60,6 @@ jobs:
       - name: Environment
         uses: actions/setup-node@v3
       - name: Test
-        uses: ambersun1234/hardhat-test-action@v1
+        uses: ambersun1234/hardhat-test-action@v0.0.1
         with:
-          network: hardhat    
+          network: hardhat
