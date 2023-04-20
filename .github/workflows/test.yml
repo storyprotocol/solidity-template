@@ -42,11 +42,6 @@ jobs:
           forge test -vvv
         id: forge-test
 
-      - name: Run Hardhat tests
-        run: |
-          npx hardhat test
-        id: hardhat-test
-
   hardhat-test:
     strategy:
       fail-fast: true
