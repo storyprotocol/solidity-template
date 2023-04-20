@@ -1,0 +1,43 @@
+name: test
+
+on: [push]
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  check:
+    strategy:
+      fail-fast: true
+
+    name: Foundry Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+
+      - uses: chill-viking/npm-ci@latest
+        name: Install NPM Dependencies
+        with:
+          working_directory: ${{ github.workspace }}
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run Forge build
+        run: |
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Run Forge tests
+        run: |
+          forge test -vvv
+        id: test
