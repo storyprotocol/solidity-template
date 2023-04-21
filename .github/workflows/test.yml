@@ -14,8 +14,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Run linter
-        run: npm run lint
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - uses: actions/cache@v3.0.3
+        id: cache
+        with:
+          path: '**/node_modules'
+          key: npm-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: npm-
+      - run: yarn
+        if: steps.cache.outputs.cache-hit != 'true'
+      - run: npm run lint
 
   foundry-test:
     strategy:
