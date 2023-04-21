@@ -30,12 +30,12 @@ module.exports = {
     mainnet: {
       url: process.env.MAINNET_URL || "",
       chainId: 1,
-      accounts: [process.env.MAINNET_PRIVATEKEY]
+      accounts: [process.env.MAINNET_PRIVATEKEY || "0x1234567890123456789012345678901234567890123456789012345678901234"]
     },
     goerli: {
       url: process.env.GOERLI_URL || "",
       chainId: 5,
-      accounts: [process.env.GOERLI_PRIVATEKEY]
+      accounts: [process.env.GOERLI_PRIVATEKEY || "0x1234567890123456789012345678901234567890123456789012345678901234"]
     }
   },
   gasReporter: {
