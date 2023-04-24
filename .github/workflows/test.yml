@@ -42,6 +42,15 @@ jobs:
           forge test -vvv
         id: forge-test
 
+  forge-gas-diff:
+    needs: foundry-test
+    name: Forge Gas Snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gas Report
+        run:
+          forge snapshot --gas-report --diff --desc
+
   hardhat-test:
     strategy:
       fail-fast: true
