@@ -42,14 +42,10 @@ jobs:
           forge test -vvv
         id: forge-test
 
-  forge-gas-diff:
-    needs: foundry-test
-    name: Forge Gas Snapshot
-    runs-on: ubuntu-latest
-    steps:
-      - name: Gas Report
+      - name: Gas Difference
         run:
           forge snapshot --gas-report --diff --desc
+        id: forge-gas-snapshot-diff
 
   hardhat-test:
     strategy:
