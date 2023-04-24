@@ -42,6 +42,11 @@ jobs:
           forge test -vvv
         id: forge-test
 
+      - name: Gas Difference
+        run:
+          forge snapshot --gas-report --diff --desc
+        id: forge-gas-snapshot-diff
+
   hardhat-test:
     strategy:
       fail-fast: true
