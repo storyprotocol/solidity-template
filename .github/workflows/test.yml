@@ -47,6 +47,11 @@ jobs:
           forge snapshot --gas-report --diff --desc
         id: forge-gas-snapshot-diff
 
+      - name: Code Coverage
+        run:
+          forge coverage --report lcov --report summary
+        id: forge-code-coverage
+
   hardhat-test:
     strategy:
       fail-fast: true
